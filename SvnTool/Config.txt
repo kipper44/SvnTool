@@ -1,0 +1,5 @@
+﻿# 설정 파일
+프로그램= C:\Users\kyd\Documents\visual studio 2017\Projects\SvnTool\SvnTool\testRoot\Program
+그래픽= C:\Users\kyd\Documents\visual studio 2017\Projects\SvnTool\SvnTool\testRoot\SeedWarGraphic
+기획= C:\Users\kyd\Documents\visual studio 2017\Projects\SvnTool\SvnTool\testRoot\SeedWarPlan
+RT= C:\Users\kyd\Documents\visual studio 2017\Projects\SvnTool\SvnTool\testRoot\RT
