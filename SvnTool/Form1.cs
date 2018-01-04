@@ -238,7 +238,7 @@ namespace SvnTool
             cUser.strPasswd = txtPasswd.Text;
 
             var iIndex = lstUsers.Items.IndexOf(cUser.strName);
-            if (-1 == iIndex) {
+            if (-1 != iIndex) {
                 MessageBox.Show("중복 계정");
                 return;
             }
@@ -320,7 +320,7 @@ namespace SvnTool
             var idx = cbBoxServer.SelectedIndex;
             var cConfig = (SVNConfig)cbBoxServer.Items[idx];
 
-            SaveSvnAuthConfig (cConfig.strPath + @"\Conf\authz1");
+            SaveSvnAuthConfig (cConfig.strPath + @"\Conf\authz");
             SaveSvnPasswdConfig(cConfig.strPath + @"\Conf\passwd");
         }
 
