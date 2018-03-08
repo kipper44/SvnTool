@@ -31,8 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("11");
             this.lstGroup = new System.Windows.Forms.ListBox();
+            this.GroupDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removegroupd = new System.Windows.Forms.ToolStripMenuItem();
             this.lstUsers = new System.Windows.Forms.ListBox();
+            this.UserRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.remove = new System.Windows.Forms.ToolStripMenuItem();
             this.lstGroupUsers = new System.Windows.Forms.ListBox();
+            this.GroupUserRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.groupremove = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
@@ -40,6 +46,8 @@
             this.btnUserAdd = new System.Windows.Forms.Button();
             this.btnGroupAdd = new System.Windows.Forms.Button();
             this.lstAuth = new System.Windows.Forms.ListBox();
+            this.AuthRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeauthv = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGroupAuthAdd = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lstviewAuth = new System.Windows.Forms.ListView();
@@ -47,14 +55,6 @@
             this.권한 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RemoveMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveAuth = new System.Windows.Forms.ToolStripMenuItem();
-            this.UserRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.remove = new System.Windows.Forms.ToolStripMenuItem();
-            this.GroupUserRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.groupremove = new System.Windows.Forms.ToolStripMenuItem();
-            this.AuthRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.GroupDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removeauthv = new System.Windows.Forms.ToolStripMenuItem();
-            this.removegroupd = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAuthDirAdd = new System.Windows.Forms.Button();
             this.txtAuthDir = new System.Windows.Forms.TextBox();
             this.txtAuthGroupAuth = new System.Windows.Forms.TextBox();
@@ -65,11 +65,13 @@
             this.txtSvnGroupAdd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbBoxServer = new System.Windows.Forms.ComboBox();
-            this.RemoveMenu.SuspendLayout();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.GroupDelete.SuspendLayout();
             this.UserRemove.SuspendLayout();
             this.GroupUserRemove.SuspendLayout();
             this.AuthRemove.SuspendLayout();
-            this.GroupDelete.SuspendLayout();
+            this.RemoveMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstGroup
@@ -84,6 +86,20 @@
             this.lstGroup.TabIndex = 0;
             this.lstGroup.SelectedIndexChanged += new System.EventHandler(this.lstGroup_SelectedIndexChanged);
             // 
+            // GroupDelete
+            // 
+            this.GroupDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removegroupd});
+            this.GroupDelete.Name = "contextMenuStrip1";
+            this.GroupDelete.Size = new System.Drawing.Size(99, 26);
+            this.GroupDelete.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.GroupDelete_ItemClicked);
+            // 
+            // removegroupd
+            // 
+            this.removegroupd.Name = "removegroupd";
+            this.removegroupd.Size = new System.Drawing.Size(98, 22);
+            this.removegroupd.Text = "삭제";
+            // 
             // lstUsers
             // 
             this.lstUsers.ContextMenuStrip = this.UserRemove;
@@ -95,6 +111,20 @@
             this.lstUsers.TabIndex = 1;
             this.lstUsers.SelectedIndexChanged += new System.EventHandler(this.lstUsers_SelectedIndexChanged);
             // 
+            // UserRemove
+            // 
+            this.UserRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.remove});
+            this.UserRemove.Name = "UserRemove";
+            this.UserRemove.Size = new System.Drawing.Size(99, 26);
+            this.UserRemove.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.UserRemove_ItemClicked);
+            // 
+            // remove
+            // 
+            this.remove.Name = "remove";
+            this.remove.Size = new System.Drawing.Size(98, 22);
+            this.remove.Text = "삭제";
+            // 
             // lstGroupUsers
             // 
             this.lstGroupUsers.ContextMenuStrip = this.GroupUserRemove;
@@ -104,6 +134,20 @@
             this.lstGroupUsers.Name = "lstGroupUsers";
             this.lstGroupUsers.Size = new System.Drawing.Size(157, 172);
             this.lstGroupUsers.TabIndex = 2;
+            // 
+            // GroupUserRemove
+            // 
+            this.GroupUserRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.groupremove});
+            this.GroupUserRemove.Name = "GroupUserRemove";
+            this.GroupUserRemove.Size = new System.Drawing.Size(99, 26);
+            this.GroupUserRemove.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.GroupUserRemove_ItemClicked);
+            // 
+            // groupremove
+            // 
+            this.groupremove.Name = "groupremove";
+            this.groupremove.Size = new System.Drawing.Size(98, 22);
+            this.groupremove.Text = "삭제";
             // 
             // label1
             // 
@@ -143,7 +187,7 @@
             this.btnUserAdd.Name = "btnUserAdd";
             this.btnUserAdd.Size = new System.Drawing.Size(75, 23);
             this.btnUserAdd.TabIndex = 7;
-            this.btnUserAdd.Text = "유저추가";
+            this.btnUserAdd.Text = "유저 저장";
             this.btnUserAdd.UseVisualStyleBackColor = true;
             this.btnUserAdd.Click += new System.EventHandler(this.btnUserAdd_Click);
             // 
@@ -168,6 +212,20 @@
             this.lstAuth.Size = new System.Drawing.Size(157, 196);
             this.lstAuth.TabIndex = 11;
             this.lstAuth.SelectedIndexChanged += new System.EventHandler(this.lstAuth_SelectedIndexChanged);
+            // 
+            // AuthRemove
+            // 
+            this.AuthRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeauthv});
+            this.AuthRemove.Name = "AuthRemove";
+            this.AuthRemove.Size = new System.Drawing.Size(99, 26);
+            this.AuthRemove.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.AuthRemove_ItemClicked);
+            // 
+            // removeauthv
+            // 
+            this.removeauthv.Name = "removeauthv";
+            this.removeauthv.Size = new System.Drawing.Size(98, 22);
+            this.removeauthv.Text = "삭제";
             // 
             // btnGroupAuthAdd
             // 
@@ -214,7 +272,7 @@
             // 권한
             // 
             this.권한.Text = "권한";
-            this.권한.Width = 122;
+            this.권한.Width = 193;
             // 
             // RemoveMenu
             // 
@@ -230,62 +288,6 @@
             this.RemoveAuth.Name = "RemoveAuth";
             this.RemoveAuth.Size = new System.Drawing.Size(98, 22);
             this.RemoveAuth.Text = "삭제";
-            // 
-            // UserRemove
-            // 
-            this.UserRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.remove});
-            this.UserRemove.Name = "UserRemove";
-            this.UserRemove.Size = new System.Drawing.Size(99, 26);
-            this.UserRemove.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.UserRemove_ItemClicked);
-            // 
-            // remove
-            // 
-            this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(98, 22);
-            this.remove.Text = "삭제";
-            // 
-            // GroupUserRemove
-            // 
-            this.GroupUserRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.groupremove});
-            this.GroupUserRemove.Name = "GroupUserRemove";
-            this.GroupUserRemove.Size = new System.Drawing.Size(99, 26);
-            this.GroupUserRemove.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.GroupUserRemove_ItemClicked);
-            // 
-            // groupremove
-            // 
-            this.groupremove.Name = "groupremove";
-            this.groupremove.Size = new System.Drawing.Size(98, 22);
-            this.groupremove.Text = "삭제";
-            // 
-            // AuthRemove
-            // 
-            this.AuthRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeauthv});
-            this.AuthRemove.Name = "AuthRemove";
-            this.AuthRemove.Size = new System.Drawing.Size(99, 26);
-            this.AuthRemove.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.AuthRemove_ItemClicked);
-            // 
-            // GroupDelete
-            // 
-            this.GroupDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removegroupd});
-            this.GroupDelete.Name = "contextMenuStrip1";
-            this.GroupDelete.Size = new System.Drawing.Size(99, 26);
-            this.GroupDelete.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.GroupDelete_ItemClicked);
-            // 
-            // removeauthv
-            // 
-            this.removeauthv.Name = "removeauthv";
-            this.removeauthv.Size = new System.Drawing.Size(98, 22);
-            this.removeauthv.Text = "삭제";
-            // 
-            // removegroupd
-            // 
-            this.removegroupd.Name = "removegroupd";
-            this.removegroupd.Size = new System.Drawing.Size(98, 22);
-            this.removegroupd.Text = "삭제";
             // 
             // btnAuthDirAdd
             // 
@@ -371,11 +373,29 @@
             this.cbBoxServer.TabIndex = 28;
             this.cbBoxServer.SelectedIndexChanged += new System.EventHandler(this.cbBoxServer_SelectedIndexChanged);
             // 
+            // txtComment
+            // 
+            this.txtComment.Location = new System.Drawing.Point(772, 149);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(100, 21);
+            this.txtComment.TabIndex = 29;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(715, 153);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "설명";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 619);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtComment);
             this.Controls.Add(this.cbBoxServer);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSvnGroupAdd);
@@ -402,11 +422,11 @@
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.RemoveMenu.ResumeLayout(false);
+            this.GroupDelete.ResumeLayout(false);
             this.UserRemove.ResumeLayout(false);
             this.GroupUserRemove.ResumeLayout(false);
             this.AuthRemove.ResumeLayout(false);
-            this.GroupDelete.ResumeLayout(false);
+            this.RemoveMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +469,8 @@
         private System.Windows.Forms.TextBox txtSvnGroupAdd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbBoxServer;
+        private System.Windows.Forms.TextBox txtComment;
+        private System.Windows.Forms.Label label6;
     }
 }
 

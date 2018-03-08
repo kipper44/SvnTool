@@ -25,6 +25,7 @@ namespace SvnTool
         {
             return strName;
         }
+        public string strDesc { get; set; }
     }
 
     public struct SVNAuthValue
@@ -196,17 +197,28 @@ namespace SvnTool
         private void SetUserFile(string strUserFileName)
         {
             string[] lines = System.IO.File.ReadAllLines(strUserFileName, Encoding.Default);
+            string strComment = "";
             foreach (var line in lines)
             {
                 if (0 >= line.Length) continue;
-                if ('#' == line[0]) continue; //주석 
+                if ('#' == line[0] && '#' != line[1]) continue; //주석 
                 var iIndex = line.IndexOf("[users]");
                 if (-1 != iIndex) continue;
 
+                iIndex = line.IndexOf("###");
+                if (-1 != iIndex)
+                {
+                    strComment = line.Substring(iIndex + 3);
+                    continue;
+                }
+
+
                 var cUser = new SvnUserInfo();
                 string[] values = line.Split('=');
-                cUser.strName = values[0];
-                cUser.strPasswd = values[1];
+                cUser.strName = values[0].Trim();
+                cUser.strPasswd = values[1].Trim();
+                cUser.strDesc = strComment;
+                strComment = "";
 
                 lstUsers.Items.Add(cUser);
             }
@@ -233,16 +245,18 @@ namespace SvnTool
 
         private void btnUserAdd_Click(object sender, EventArgs e)
         {
+            string strName = txtUser.Text;
             var cUser = new SvnUserInfo();
             cUser.strName = txtUser.Text;
             cUser.strPasswd = txtPasswd.Text;
+            cUser.strDesc = txtComment.Text;
 
-            var iIndex = lstUsers.Items.IndexOf(cUser.strName);
+            var iIndex = lstUsers.FindString(strName.Trim());
             if (-1 != iIndex) {
-                MessageBox.Show("중복 계정");
+                //MessageBox.Show("중복 계정");
+                lstUsers.Items[iIndex] = cUser;
                 return;
             }
-
             lstUsers.Items.Add(cUser);
             
             
@@ -330,6 +344,7 @@ namespace SvnTool
             var cUserInfo = (SvnUserInfo)lstUsers.SelectedItem;
             txtUser.Text = cUserInfo.strName;
             txtPasswd.Text = cUserInfo.strPasswd;
+            txtComment.Text = cUserInfo.strDesc;
         }
 
 
@@ -485,9 +500,15 @@ namespace SvnTool
             foreach (var item in lstUsers.Items)
             {
                 var cUserInfo = (SvnUserInfo)item;
-                strText += cUserInfo.strName;
+
+                strText += "###";
+                strText += cUserInfo.strDesc.Trim();
+                strText += Environment.NewLine;
+
+                strText += cUserInfo.strName.Trim();
                 strText += "=";
-                strText += cUserInfo.strPasswd;
+                strText += cUserInfo.strPasswd.Trim();
+
                 strText += Environment.NewLine;
             }
 
